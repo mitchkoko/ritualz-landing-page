@@ -3,11 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Landing Page</title>
+    <title>Ritualz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS goes here */
+        /* Heading */
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 0px;
+            padding-top: 25px; /* Add padding to the top of the heading */
+        }
+        /* Body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3; /* Slight grey background */
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        /* Paragraph */
+        p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        /* Buttons */
+        .buttons {
+            margin: 0px 0;
+        }
+        /* Anchor -> hyper links */
+        a {
+            background-color: #3e3e3e;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: inline-block;
+            margin: 5px; /* Adds spacing between buttons */
+        }
+        a:hover {
+            background-color: #7e7e7e;
+        }
+        /* Image */
+        img {
+            max-width: 80%; /* Ensures the image scales down */
+            height: auto; /* Maintains aspect ratio */
+            border-radius: 0px; /* Optional: Rounded corners */
+            margin-top: -40px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Landing Page</h1>
-    <p>This is a simple static site hosted on GitHub Pages!</p>
-    <a href="https://example.com" style="padding:10px 20px; background-color:#007BFF; color:white; text-decoration:none; border-radius:5px;">Visit Example</a>
+    <!-- HTML goes here -->
+    <h1>Track Your Life</h1>
+    <p>Minimal Habit Tracker</p>
+    <div class="buttons">
+        <a href="https://apps.apple.com/us/app/ritualz/id6443862619" target="_blank">iOS</a>
+        <a href="https://play.google.com/store/apps/details?id=app.mitchkoko.ritualzfinal" target="_blank">Android</a>
+    </div>
+    <img src="images/Untitled.png" alt="Screenshot of the Ritualz app">
+    <footer>
+        &copy; 2024 Ritualz. All Rights Reserved.
+    </footer>
 </body>
 </html>
