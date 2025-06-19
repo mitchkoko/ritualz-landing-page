@@ -3,492 +3,254 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ritualz – Build Your Life, One Habit at a Time</title>
-  <meta name="description" content="Ritualz - Build your life one habit at a time. Minimal habit tracker with streaks, widgets, and visual progress tracking.">
-  <meta property="og:title" content="Ritualz - Build Your Life, One Habit at a Time">
-  <meta property="og:description" content="Minimal habit tracker with streaks, widgets, and visual progress tracking.">
+  <title>Ritualz – Minimal Habit Tracker</title>
+  <meta name="description" content="Track your daily rituals with our beautifully minimal habit tracker.">
+  <meta property="og:title" content="Ritualz - Minimal Habit Tracker">
+  <meta property="og:description" content="Track your daily rituals with our beautifully minimal habit tracker.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="/favicon.png">
-  
+
+  <!-- Bebas Neue + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     :root {
-      --black: #0f0f0f;
-      --dark-gray: #131313;
-      --gray: #666;
-      --light-gray: #999;
+      --bg: #f2f2f2;
+      --text-primary: #0a0a0a;
+      --text-tertiary: #9a9a9a;
+      --accent: #0a0a0a;
       --white: #ffffff;
-      --accent: #32ab38;
-      --gradient: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--dark-gray);
-      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
       overflow-x: hidden;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      position: relative;
     }
 
-    html { scroll-behavior: smooth; }
-
-    /* Skip to content link for accessibility */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      white-space: nowrap;
-      border-width: 0;
-    }
-
-    /* Typography */
-    h1, h2 {
-      font-family: 'Bebas Neue', sans-serif;
-    }
-
-    /* Utility class for gradient text */
-    .gradient-text {
-      background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* Hero Section */
-    .hero {
+    .container {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      padding: 2rem;
       position: relative;
-      background: radial-gradient(circle at center, var(--dark-gray) 0%, var(--black) 100%);
-    }
-
-    .hero-content {
-      text-align: center;
       z-index: 2;
-      animation: fadeInUp 1s ease-out;
     }
 
-    .fire-icon {
-      width: 72px;
-      height: 72px;
-      margin-bottom: 2.5rem;
-      animation: flicker 2s infinite;
-    }
-
-    @keyframes flicker { 
-      0%, 100% { opacity: 1; } 
-      50% { opacity: 0.8; } 
-    }
-
-    h1 {
-      font-size: clamp(3.5rem, 9vw, 6rem);
-      font-weight: 200;
-      margin-bottom: 0;
-    }
-
-    .tagline {
-      font-size: 1.125rem;
-      color: var(--light-gray);
-      margin-bottom: 3.5rem;
-      font-weight: 300;
-    }
-    
-    /* iOS Download Button */
-    .ios-download-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 32px;
-      background: var(--gradient);
-      color: var(--black);
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 12px;
-      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-      font-size: 1rem;
-      letter-spacing: 0.5px;
-      position: relative;
-      overflow: hidden;
-      isolation: isolate;
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-      will-change: transform;
-    }
-    
-    .ios-download-btn::after {
-      content: "";
-      position: absolute;
+    .content-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      max-width: 1200px;
       width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.1);
-      transform: translateY(100%);
-      transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-      z-index: -1;
-    }
-    
-    .ios-download-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.35);
-    }
-    
-    .ios-download-btn:hover::after {
-      transform: translateY(0);
-    }
-    
-    .ios-download-btn svg {
-      margin-right: 8px;
-      width: 20px;
-      height: 20px;
-    }
-    
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce 2s infinite;
+      align-items: center;
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-      40% { transform: translateX(-50%) translateY(-10px); }
-      60% { transform: translateX(-50%) translateY(-5px); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Features Section */
-    .features {
-      padding: 6rem 2rem 8rem;
-      max-width: 1400px;
-      margin-inline: auto;
-      background: var(--dark-gray);
+    .app-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: relative;
+      animation: fadeIn 0.8s ease-out 0.2s both;
     }
-    
-    .features::before {
+    .app-showcase::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.02) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.02) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 20%, rgba(255,255,255,0.01) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 10rem;
-      margin-top: 5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-header h2 {
-      font-size: 2.5rem;
-      font-weight: 200;
-      letter-spacing: 0.02em;
-      margin-bottom: 1rem;
-    }
-
-    .section-header p {
-      color: var(--gray);
-      font-size: 1.1rem;
-      font-weight: 300;
-    }
-
-    .features-grid {
-      display: grid;
-      max-width: 1000px;
-      margin-inline: auto;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Simplified Glassmorphism */
-    .feature {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 2.5rem;
-      text-align: center;
-      opacity: 0;
-      animation: fadeIn 0.8s ease-out forwards;
-      transition: all 0.3s ease;
-      will-change: transform;
-    }
-    
-    .feature:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    }
-    
-    .feature.is-visible {
-      will-change: auto;
-    }
-    
-    .feature:nth-child(1) { animation-delay: 0.1s; }
-    .feature:nth-child(2) { animation-delay: 0.2s; }
-    .feature:nth-child(3) { animation-delay: 0.3s; }
-    .feature:nth-child(4) { animation-delay: 0.4s; }
-    
-    @keyframes fadeIn { 
-      to { opacity: 1; } 
-    }
-    
-    .feature-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      margin-inline: auto;
-      margin-bottom: 1.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 16px;
-      transition: transform 0.3s ease;
-    }
-    
-    .feature:hover .feature-icon {
-      transform: scale(1.1);
-    }
-    
-    .feature-icon svg {
-      width: 32px;
-      height: 32px;
-    }
-    
-    .feature h3 {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-      font-weight: 300;
-      letter-spacing: 0.02em;
-    }
-    
-    .feature p {
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.7;
-      font-size: 0.95rem;
-      font-weight: 300;
-    }
-
-    /* Visual Section */
-    .visual-section {
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-      max-width: 1000px;
-      margin-inline: auto;
-      background: var(--dark-gray);
-    }
-
-    .visual-section h2 {
-      font-size: 2.5rem;
-      font-weight: 200;
-      letter-spacing: 0.02em;
-      margin-bottom: 1rem;
-      max-width: 800px;
-      margin-inline: auto;
-    }
-
-    .visual-section p {
-      color: var(--gray);
-      font-size: 1.1rem;
-      margin-bottom: 3rem;
-      font-weight: 300;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
     }
 
     .app-demo-img {
       width: 100%;
-      max-width: 400px;
-      height: auto;
+      max-width: 460px;
       object-fit: contain;
+      filter: drop-shadow(0 25px 50px rgba(0,0,0,0.08));
+      animation: float 6s ease-in-out infinite;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .app-demo-img:hover {
+      transform: translateY(-5px) scale(1.02);
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.12));
     }
 
-    /* Footer CTA */
-    .footer-cta {
-      padding: 2rem 2rem 4rem;
-      text-align: center;
+    .content { animation: fadeIn 0.8s ease-out; }
+
+    .logo {
+      width: 56px; height: 56px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+    }
+    .logo svg { width:100%; height:100%; transition:transform 0.3s ease; }
+    .logo:hover svg { transform: scale(1.1); }
+
+    @keyframes fadeIn { from {opacity:0} to {opacity:1} }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(30px) }
+      to   { opacity:1; transform:translateY(0)   }
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) }
+      50%     { transform: translateY(-10px) }
     }
 
-    .footer-note { 
-      margin-top: 4rem; 
-      color: rgba(255, 255, 255, 0.3); 
-      font-size: 0.8rem; 
-      font-weight: 300; 
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      /* slightly reduced headline size */
+      font-size: clamp(3.5rem, 6vw, 5rem);
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
     }
 
-    /* Fade-in on scroll */
-    .fade-in-section { 
-      opacity: 0; 
-      transform: translateY(20px); 
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+    .subtitle {
+      /* slightly reduced subtitle */
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      letter-spacing: 0.02em;
+      color: var(--text-tertiary);
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
     }
 
-    .fade-in-section.is-visible { 
-      opacity: 1; 
-      transform: translateY(0); 
+    .download-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.7s forwards;
     }
 
-    /* Responsive */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9375rem;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    /* App Store */
+    .download-btn.app-store {
+      background: var(--accent);
+      color: var(--white);
+      border: 2px solid var(--accent);
+    }
+    .download-btn.app-store::before {
+      content: '';
+      position: absolute;
+      top:50%; left:50%;
+      width:0; height:0;
+      border-radius:50%;
+      background:rgba(255,255,255,0.1);
+      transform:translate(-50%,-50%);
+      transition:width 0.6s, height 0.6s;
+    }
+    .download-btn.app-store:hover::before {
+      width:300px; height:300px;
+    }
+    .download-btn.app-store:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      filter: brightness(1.1);
+      border-color: #444;
+    }
+
+    /* Google Play */
+    .download-btn.play-store {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid rgba(10,10,10,0.2);
+      backdrop-filter: blur(10px);
+    }
+    .download-btn.play-store:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-color: var(--white);
+    }
+
+    .download-btn svg { width:20px; height:20px; z-index:1 }
+    .download-btn span { z-index:1 }
+
+    .footer-note {
+      color: var(--text-tertiary);
+      font-size: 0.875rem;
+      opacity: 0;
+      animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.8s forwards;
+    }
+
     @media (max-width: 768px) {
-      .features-grid { 
-        grid-template-columns: 1fr; 
-        gap: 2rem; 
+      .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        text-align: center;
       }
-      .visual-section { 
-        padding: 2rem 1rem 4rem; 
-      }
-      .app-demo-img { 
-        max-width: 80vw; 
-      }
+      .app-showcase { order: 1 }
+      .content      { order: 2 }
+      .logo { margin: 0 auto 2rem }
+      .download-buttons { flex-direction: column; align-items: center }
+      .app-demo-img { max-width: 380px }
     }
 
     @media (max-width: 480px) {
-      .visual-section { 
-        padding: 2rem 1rem 4rem; 
-      }
-      .app-demo-img { 
-        max-width: 90vw; 
-      }
+      .container { padding: 1.5rem }
+      h1 { font-size: 3rem; margin-bottom: 0.75rem }
+      .subtitle { font-size: 1.25rem; margin-bottom: 1rem }
+      .app-demo-img { max-width: 260px }
+      .logo { width: 48px; height: 48px }
     }
   </style>
 </head>
 <body>
-  <!-- Skip to content link -->
-  <a href="#features" class="sr-only">Skip to main content</a>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-content">
-      <svg class="fire-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C12 2 19 8 19 14C19 18.4183 15.4183 22 11 22C6.58172 22 3 18.4183 3 14C3 11 5 8 7 6C7 8 8 10 10 10C10 7 11 4 12 2Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <h1 class="gradient-text">Build Your Life</h1>
-      <p class="tagline">One habit at a time</p>
-      <a href="https://apps.apple.com/app/ritualz/id6443862619" class="ios-download-btn" aria-label="Download Ritualz on iOS App Store">
-        <svg viewBox="0 0 384 512" fill="currentColor">
-          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
-        </svg>
-        Download on iOS
-      </a>
-    </div>
-    <div class="scroll-indicator" aria-hidden="true">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="features fade-in-section" id="features">
-    <div class="section-header">
-      <h2>"You do not rise to the level of your goals.<br>You fall to the level of your systems."</h2>
-      <p>James Clear</p>
-    </div>
-    <div class="features-grid">
-      <div class="feature">
-        <div class="feature-icon">
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="app-showcase">
+        <img src="images/light_demo.png"
+             alt="Ritualz app interface showing habit tracking calendar and streaks"
+             class="app-demo-img">
+      </div>
+      <div class="content">
+        <div class="logo">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C12 2 19 8 19 14C19 18.4183 15.4183 22 11 22C6.58172 22 3 18.4183 3 14C3 11 5 8 7 6C7 8 8 10 10 10C10 7 11 4 12 2Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 2C12 2 19 8 19 14C19 18.4183 15.4183 22 11 22C6.58172 22 3 18.4183 3 14C3 11 5 8 7 6C7 8 8 10 10 10C10 7 11 4 12 2Z" fill="currentColor"/>
           </svg>
         </div>
-        <h3>STREAKS</h3>
-        <p>Visual motivation that ignites your consistency. Watch your progress grow day by day.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="2" width="14" height="20" rx="2" stroke="white" stroke-width="1.5"/>
-            <line x1="9" y1="18" x2="15" y2="18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
+
+        <h1>Ritualz</h1>
+        <p class="subtitle">Minimal Habit Tracker</p>
+
+        <div class="download-buttons">
+          <a href="https://apps.apple.com/app/ritualz/id6443862619"
+             class="download-btn app-store" aria-label="Download on App Store">
+            <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span>App Store</span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=app.mitchkoko.ritualzandroid" class="download-btn play-store" aria-label="Get it on Google Play">
+            <svg viewBox="0 0 512 512" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+            <span>Google Play</span>
+          </a>
         </div>
-        <h3>HOME WIDGETS</h3>
-        <p>Check habits right from your home screen. Progress tracking at your fingertips.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 6V10L15 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M12 3C16.9706 3 21 7.02944 21 12C21 13.6569 20.5826 15.2138 19.8525 16.5658L21.5 18.2133L19.7867 19.9267L18.1392 18.2792C16.6862 19.5 14.8274 20.25 12.8 20.25C7.8294 20.25 3.8 16.2206 3.8 11.25C3.8 6.27944 7.8294 2.25 12.8 2.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3>NOTIFICATIONS</h3>
-        <p>Gentle nudges at the perfect time. Stay consistent without feeling overwhelmed.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="1.5"/>
-            <rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="1.5"/>
-            <rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="1.5"/>
-            <rect x="14" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <h3>HEAT MAP</h3>
-        <p>Visualize your year of progress at a glance. Spot patterns and celebrate consistency.</p>
+
+        <p class="footer-note">Created by Mitch Koko</p>
       </div>
     </div>
-  </section>
-
-  <!-- Visual -->
-  <section class="visual-section fade-in-section">
-    <h2>"Every action you take is a vote for the type of person you wish to become."</h2>
-    <p>Minimal Habit Tracker</p>
-    <img src="images/black-demo.png" alt="Ritualz app demonstration showing habit tracking interface" class="app-demo-img">
-  </section>
-
-
-
-  <!-- Footer CTA -->
-  <section class="footer-cta fade-in-section" id="download">
-    <p>      <a href="https://apps.apple.com/app/ritualz/id6443862619" class="ios-download-btn" aria-label="Download Ritualz on iOS App Store">
-        <svg viewBox="0 0 384 512" fill="currentColor">
-          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
-        </svg>
-        Download on iOS
-      </a></p>
-    <p class="footer-note">Mitch Koko • Ritualz</p>
-  </section>
-
-  <script>
-    // Simplified intersection observer
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => e.isIntersecting && (e.target.classList.add('is-visible'), observer.unobserve(e.target))),
-      { threshold: 0.15, rootMargin: '0px 0px -100px 0px' }
-    );
-    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
-  </script>
-
+  </div>
 </body>
 </html>
