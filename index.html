@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -157,6 +157,7 @@
       width: 100%;
       max-width: 460px;
       object-fit: contain;
+      border-radius: 30px;
       filter: drop-shadow(0 25px 50px var(--shadow-heavy));
       animation: float 6s ease-in-out infinite;
       transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
@@ -166,13 +167,12 @@
       filter: drop-shadow(0 30px 60px var(--shadow-medium));
     }
 
-    /* Image swap for dark mode */
+    /* Video swap for dark mode */
     .app-demo-img.light-img { display: block; }
     .app-demo-img.dark-img  { display: none; }
     [data-theme="dark"] .app-demo-img.light-img { display: none; }
     [data-theme="dark"] .app-demo-img.dark-img  { display: block; }
     [data-theme="dark"] .app-demo-img {
-      border-radius: 30px;
       filter: drop-shadow(0 25px 50px rgba(0,0,0,0.3));
     }
     [data-theme="dark"] .app-demo-img:hover {
@@ -355,12 +355,24 @@
   <div class="hero-container">
     <div class="content-wrapper">
       <div class="app-showcase">
-        <img src="images/light-demo.png"
-             alt="Ritualz app interface showing habit tracking calendar and streaks"
-             class="app-demo-img light-img">
-        <img src="images/black-demo.png"
-             alt="Ritualz app interface showing habit tracking calendar and streaks"
-             class="app-demo-img dark-img">
+        <video
+          class="app-demo-img light-img"
+          autoplay
+          loop
+          muted
+          playsinline>
+          <source src="assets/ritualz_demo_light.webm" type="video/webm">
+          <source src="assets/ritualz_demo_light.mov" type="video/quicktime">
+        </video>
+        <video
+          class="app-demo-img dark-img"
+          autoplay
+          loop
+          muted
+          playsinline>
+          <source src="assets/ritualz_demo_dark.webm" type="video/webm">
+          <source src="assets/ritualz_demo_dark.mov" type="video/quicktime">
+        </video>
       </div>
       <div class="content">
         <h1>Ritualz</h1>
@@ -378,7 +390,7 @@
           </a>
         </div>
 
-        <p class="footer-note">Created with ❤️ by Mitch Koko</p>
+        <p class="footer-note">Created with ❤️ by <a href="https://mitchkoko.app" style="color: var(--text-tertiary); text-decoration: underline; text-underline-offset: 3px;">Mitch Koko</a></p>
       </div>
     </div>
   </div>
@@ -391,13 +403,11 @@
       localStorage.setItem('theme', isDark ? 'light' : 'dark');
     }
 
-    // Load saved theme or respect system preference
+    // Load saved theme, default to dark
     (function() {
       const saved = localStorage.getItem('theme');
       if (saved) {
         document.documentElement.setAttribute('data-theme', saved);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
       }
     })();
   </script>
