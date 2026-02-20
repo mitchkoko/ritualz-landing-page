@@ -161,6 +161,7 @@
       filter: drop-shadow(0 25px 50px var(--shadow-heavy));
       animation: float 6s ease-in-out infinite;
       transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      mix-blend-mode: darken;
     }
     .app-demo-img:hover {
       transform: translateY(-4px) scale(1.01);
@@ -174,6 +175,7 @@
     [data-theme="dark"] .app-demo-img.dark-img  { display: block; }
     [data-theme="dark"] .app-demo-img {
       filter: drop-shadow(0 25px 50px rgba(0,0,0,0.3));
+      mix-blend-mode: lighten;
     }
     [data-theme="dark"] .app-demo-img:hover {
       filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));
