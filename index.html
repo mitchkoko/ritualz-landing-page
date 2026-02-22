@@ -157,14 +157,13 @@
       width: 100%;
       max-width: 460px;
       object-fit: contain;
-      border-radius: 30px;
-      filter: drop-shadow(0 25px 50px var(--shadow-heavy));
-      animation: float 6s ease-in-out infinite;
+      filter: drop-shadow(0 25px 50px rgba(0,0,0,0.3));
       transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      border-radius: 30px;
     }
     .app-demo-img:hover {
       transform: translateY(-4px) scale(1.01);
-      filter: drop-shadow(0 30px 60px var(--shadow-medium));
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));
     }
 
     /* Video swap for dark mode */
@@ -172,12 +171,6 @@
     .app-demo-img.dark-img  { display: none; }
     [data-theme="dark"] .app-demo-img.light-img { display: none; }
     [data-theme="dark"] .app-demo-img.dark-img  { display: block; }
-    [data-theme="dark"] .app-demo-img {
-      filter: drop-shadow(0 25px 50px rgba(0,0,0,0.3));
-    }
-    [data-theme="dark"] .app-demo-img:hover {
-      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));
-    }
 
     .content { animation: fadeIn 0.8s ease-out; }
 
